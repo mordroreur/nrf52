@@ -1,6 +1,6 @@
 sample:
-  name: Bluetooth Peripheral HR
-  description: Demonstrates the HR (Heart Rate) GATT Service
+  name: Bluetooth Detector
+  description: A key finder
 tests:
   sample.bluetooth.peripheral_hr:
     harness: bluetooth
@@ -17,3 +17,8 @@ tests:
     depends_on: arduino_serial
     tags: bluetooth
     extra_args: SHIELD=frdm_kw41z
+  sample.basic.button:
+    tags: button gpio
+    filter: dt_enabled_alias_with_parent_compat("sw0", "gpio-keys")
+    depends_on: gpio
+    harness: button
