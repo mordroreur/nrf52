@@ -1,14 +1,12 @@
 .. _peripheral_hr:
 
-Bluetooth: Peripheral HR
+Key-Finder
 ########################
 
 Overview
 ********
 
-Similar to the :ref:`Peripheral <ble_peripheral>` sample, except that this
-application specifically exposes the HR (Heart Rate) GATT Service. Once a device
-connects it will generate dummy heart-rate values.
+Project in objective to create a working code of key-finder.
 
 
 Requirements
@@ -20,7 +18,23 @@ Requirements
 Building and Running
 ********************
 
-This sample can be found under :zephyr_file:`samples/bluetooth/peripheral_hr` in the
-Zephyr tree.
+Using Visual Studio code with the nrf extension, you can run the project.
 
-See :ref:`bluetooth samples section <bluetooth-samples>` for details.
+Uses
+********************
+
+When launched, the card is named "Math Test" (the name can be changed in the prj.conf file). The service with the UUID 0x1401 contains two important elements:
+
+ -   The UUID 0x1404 in notify mode signals when the button is pressed.
+ -   The UUID 0x1405 in write mode, when the sent signal is greater than 0x80 (equals 124), lights up Led 1.
+
+
+Limitations
+********************
+
+The objective is not only to light up LED 1 but also to generate some noise with a buzzer when it receives a high value. However, this functionality is not implemented yet because I am currently unable to use an output from the card as a PWM (Pulse Width Modulation) output.
+
+Origin
+********************
+
+This code was entirely created by me, drawing significant inspiration and guidance from the Git repository: "https://github.com/nrfconnect/sdk-zephyr/blob/v2.7.99-ncs1-1/samples/basic/".
