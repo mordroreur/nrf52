@@ -28,7 +28,6 @@
 #include <zephyr/bluetooth/uuid.h>
 #include <zephyr/bluetooth/gatt.h>
 #include <zephyr/bluetooth/services/bas.h>
-#include <zephyr/bluetooth/services/hrs.h>
 
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
@@ -155,19 +154,6 @@ static void but_notify(void)
 	k_sleep(K_SECONDS(0.1));
 	bt_but_set_button_value(0x00);
 	pressed = 0;
-}
-
-static void hrs_notify(void)
-{
-	static uint8_t heartrate = 90U;
-
-	/* Heartrate measurements simulation */
-	heartrate++;
-	if (heartrate == 160U) {
-		heartrate = 90U;
-	}
-
-	bt_hrs_notify(heartrate);
 }
 
 
@@ -362,9 +348,6 @@ int main(void)
 	 */
 	while (1) {
 		k_sleep(K_SECONDS(1));
-
-		/* Heartrate measurements simulation */
-		hrs_notify();
 
 		/* Battery level simulation */
 		bas_notify();
